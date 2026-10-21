@@ -274,6 +274,20 @@
   @media (max-width: 800px) {
     .palette { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 76px; }
   }
+  /* Keep the block note below its target when there is no room beside it. */
+  @media (max-width: 720px) {
+    .block-demo { margin-bottom: 120px; }
+    .block-demo > .ann::before {
+      left: calc(50% - 23px + var(--ann-arrow-x));
+      top: calc(100% + var(--ann-target-gap) - 4px + var(--ann-arrow-y));
+      --_ann-arrow-mask: url("data:image/svg+xml,%3Csvg width='46' height='38' viewBox='0 0 46 38' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23 35 C22 26 22 15 23 4' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M17 10 L23 3 L29 10' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .block-demo > .ann::after {
+      left: calc(50% + var(--ann-text-x));
+      top: calc(100% + var(--ann-target-gap) + 31px + var(--ann-lower-label-gap) + var(--ann-text-y));
+      transform: translateX(-50%) rotate(var(--ann-rotate));
+    }
+  }
   @media (max-width: 560px) {
     main { width: calc(100% - 40px); padding: 0 0 100px; }
     .theme-toggle { top: 34px; }
